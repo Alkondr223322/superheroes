@@ -10,6 +10,12 @@
             nickname: {{nickname}}, real_name: {{real_name}}, origin_description: {{origin_description}},
             superpowers: {{superpowers}}, catch_phrase: {{catch_phrase}}
         </span>
+        <ul>
+         {{#each filename}}
+             <li><img src='data:{{lookup ../contentType @index}};base64,{{lookup ../imageBase64 @index}}'></li>
+          {{/each}}
+        </ul>
+        
         <input type="hidden" value="{{_id}}" name="id">
 
         <button class="btn btn-small" type="submit">Save</button>
