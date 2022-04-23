@@ -1,0 +1,30 @@
+{
+  "name": "superheroes",
+  "version": "1.0.0",
+  "description": "a testing project for a job interview",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index",
+    "dev": "nodemon index"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Alkondr223322/superheroes.git"
+  },
+  "author": "Oleksii Kondrashin oleksii.kondrashin@gmail.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Alkondr223322/superheroes/issues"
+  },
+  "homepage": "https://github.com/Alkondr223322/superheroes#readme",
+  "dependencies": {
+    "@handlebars/allow-prototype-access": "^1.0.5",
+    "express": "^4.17.3",
+    "express-handlebars": "^6.0.5",
+    "mongoose": "^6.3.1",
+    "multer": "^1.4.4"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
