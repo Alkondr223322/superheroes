@@ -32,7 +32,7 @@ router.post('/addSuperhero', store.array('images', 5), async (req, res) => {
         })
         // compile req arrays
         imgArray.map((src, index) => {
-            filenameArr.push(files[index].originalName);
+            filenameArr.push(files[index].originalname);
             contentTypeArr.push(files[index].mimetype);
             imageBase64Arr.push(src);
         })
