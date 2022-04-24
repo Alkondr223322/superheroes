@@ -1,26 +1,29 @@
 <form action="/addSuperhero" enctype="multipart/form-data" method="POST">
   <h2>Create superhero</h2>
 
-  <div class="input-field">
-
-    <input type="text" name="nickname">
-    <label>nickname</label>
-
-    <input type="text" name="real_name">
-    <label>real_name</label>
-
-    <input type="text" name="origin_description">
-    <label>origin_description</label>
-
-    <input type="text" name="superpowers">
-    <label>superpowers</label>
-
-    <input type="text" name="catch_phrase">
-    <label>catch_phrase</label>
-
-    <input type="file" name="images" multiple>
-    <label>images</label>
+  <div class="form-group">
+    <label for="nickname">Nickname</label>
+    <input type="text" name="nickname" class="form-control" id="nickname">
   </div>
-
-  <button type="submit" class="btn">Add superhero</button>
+   <div class="form-group">
+    <label for="real_name">Real name</label>
+    <input type="text" name="real_name" class="form-control" id="real_name">
+  </div>
+  <div class="form-group">
+    <label for="origin_description">Origin description</label>
+    <input type="text" name="origin_description" class="form-control" id="origin_description">
+  </div>
+  <div class="form-group">
+    <label for="superpowers">Superpowers</label>
+    <input type="text" name="superpowers" class="form-control" id="superpowers">
+  </div>
+  <div class="form-group">
+    <label for="catch_phrase">Catch phrase</label>
+    <input type="text" name="catch_phrase" class="form-control" id="catch_phrase">
+  </div>
+  <div class="form-group">
+    <label for="imgs">images</label>
+    <input type="file" name="images" multiple class="form-control" id="imgs">
+  </div>
+  <button type="submit" class="btn btn-primary">Add superhero</button>
 </form>

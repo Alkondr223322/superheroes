@@ -1,21 +1,10 @@
-.todo {
-  margin-bottom: 1rem;
+.carousel-item{
+  width: 100%; /*width you want*/
+  height: 100vh; /*height you want*/
+  overflow: hidden;
 }
-
-.todo span.completed {
-  text-decoration: line-through;
-}
-
-.todo label {
+.carousel-item img{
   width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  cursor: pointer;
-  background: #f3f3f3;
-  padding: 1rem;
-}
-
-.todo i {
-  z-index: 2;
+  height: 100%;
+  object-fit: cover;
 }

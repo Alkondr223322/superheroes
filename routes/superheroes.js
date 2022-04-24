@@ -52,13 +52,38 @@ router.post('/addSuperhero', store.array('images', 5), async (req, res) => {
      res.redirect('/')
 })
 
-router.post('/saveSuperhero', async (req, res) => {
-    // const superhero = await Superhero.findById(req.body.id)
-
+router.post('/editSuperhero', store.array('images', 5), async (req, res) => {
+    const superhero = await Superhero.findById(req.body.id)
+    const files = req.files;
+    if(files){
+            // convert images into base64 encoding
+        let imgArray = files.map((file) => {
+            let img = fs.readFileSync(file.path)
+            return encode_image = img.toString('base64')
+        })
+        // compile req arrays
+        imgArray.map((src, index) => {
+            superhero.filename.push(files[index].originalname);
+            superhero.contentType.push(files[index].mimetype);
+            superhero.imageBase64.push(src);
+        })
+    }else{console.log("no files added")}
+    superhero.nickname = req.body.nickname,
+    superhero.real_name = req.body.real_name,
+    superhero.origin_description = req.body.origin_description,
+    superhero.superpowers = req.body.superpowers,
+    superhero.catch_phrase = req.body.catch_phrase,
     // superhero.nickname = req.body.nickname + " the saved"
-    //  await superhero.save()
+    await superhero.save()
 
      res.redirect('/')
+})
+
+router.post('/deleteSuperhero', async (req, res) => {
+  const superhero = await Superhero.findById(req.body.id)
+  await superhero.deleteOne()
+
+   res.redirect('/')
 })
 
 module.exports = router

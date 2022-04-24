@@ -19,6 +19,7 @@
   "homepage": "https://github.com/Alkondr223322/superheroes#readme",
   "dependencies": {
     "@handlebars/allow-prototype-access": "^1.0.5",
+    "bootstrap": "^5.1.3",
     "express": "^4.17.3",
     "express-handlebars": "^6.0.5",
     "mongoose": "^6.3.1",
