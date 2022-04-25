@@ -1,4 +1,6 @@
 const Handlebars = require('handlebars')
+const paginateHelper = require('./middleware/paginationHelper');
+const calcPage = require('./middleware/calculatePage');
 const {allowInsecurePrototypeAccess} = require('@handlebars/allow-prototype-access')
 const express = require('express')
 const mongoose = require('mongoose')
@@ -15,8 +17,11 @@ const hbs = exphbs.create({
   extname: 'hbs',
   handlebars: allowInsecurePrototypeAccess(Handlebars)
 })
-
+hbs.handlebars.registerHelper('paginateHelper', paginateHelper.createPagination);
+hbs.handlebars.registerHelper('calcPage', calcPage.calcPage);
 app.engine('hbs', hbs.engine)
+
+
 app.set('view engine', 'hbs')
 app.set('views', 'views')
 
@@ -30,6 +35,7 @@ app.use(
   "/js",
   express.static(path.join(__dirname, "node_modules/bootstrap/dist/js"))
 )
+app.use(express.static(path.join(__dirname, "uploads")));
 app.use(superheroRoutes)
 
 async function start() {

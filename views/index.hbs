@@ -5,20 +5,25 @@
     <div><a href="/addSuperhero" class="btn btn-primary">Add new superhero</a></div>
   </li>
   {{#each superheroes}}
+  {{#if (calcPage heroInd=@index page = ../pagination.page)}}
   <li class="list-group-item">
-    <div class="container " >
-        <div class="row">
+    <div class="container" >
+        <div class="row d-flex align-items-center">
           {{#if filename.[0]}}
-          <div class="col-3 d-flex justify-content-center align-items-center "><img src='data:{{contentType.[0]}};base64,{{imageBase64.[0]}}' alt="" class="col-sm img-fluid"></div>
+          <div class="col-3 d-flex justify-content-center align-items-center index-img-container"><img src='data:{{contentType.[0]}};base64,{{imageBase64.[0]}}' alt="" class="col-sm img-fluid img-thumbnail index-img-img"></div>
           {{else}}
-          <div class="col-3 d-flex justify-content-center align-items-center "><img src='../uploads/blankHero.png' alt="" class="col-sm img-fluid"></div>
+          <div class="col-3 d-flex justify-content-center align-items-center index-img-container"><img src='/blankHero.png' alt="" class="col-sm img-fluid img-thumbnail index-img-img"></div>
           {{/if}}
-          <div class="col-9 d-flex justify-content-center align-items-center "> <span>{{nickname}}</span> </div>
+          <div class="col-9 d-flex justify-content-center align-items-center"> <span>{{nickname}}</span> </div>
         </div>
         {{>accordion}}
     </div>
   </li>
+  {{/if}}
   {{/each}}
+  <li class="list-group-item">
+    {{{paginateHelper pagination}}}
+  </li>
 </ul>
 
 {{else}}

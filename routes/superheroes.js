@@ -2,22 +2,24 @@ const { Router } = require('express')
 const Superhero = require('../models/Superhero')
 const router = Router()
 const fs = require('fs');
-const store = require('../multer')
+const store = require('../middleware/multer')
 
 router.get('/', async (req, res) => {
   const superheroes = await Superhero.find({})
-
   res.render('index', {
     title: 'Superhero list',
-    isIndex: true,
-    superheroes
+    superheroes,
+    pagination: {
+      page: (Number.isInteger(+req.url.slice(-1))) ? +req.url.slice(-1) : 1,  // The current page the user is on
+      limit: 5,   // The total number of available pages
+      totalRows: superheroes.length
+    }
   })
 })
 
 router.get('/addSuperhero', (req, res) => {
   res.render('layouts/addSuperhero', {
     title: 'addSuperhero',
-    isCreate: true
   })
 })
 
@@ -87,6 +89,7 @@ router.post('/deleteSuperhero', async (req, res) => {
 })
 
 router.post('/delSuperheroImg', async(req, res) =>{
+
   const imgid = req.body.imgid
   const superhero = await Superhero.findById(req.body.heroid);
   superhero.filename.splice(imgid, 1);

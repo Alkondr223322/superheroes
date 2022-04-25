@@ -1,14 +1,14 @@
-<div id="carousel{{@index}}" class="carousel slide" data-bs-ride="carousel">
+                        <div id="carousel{{@index}}" class="carousel slide" data-bs-ride="carousel">
                             <div class="carousel-inner">
                             {{#each filename}}
                               
                               
-                              <div class="carousel-item {{#if @index}} {{else}} active {{/if}}">
-                                <form action="/delSuperheroImg" method="post" id="delimg{{@index}}" onsubmit="return confirm('Do you really want to delete this image?');">
+                              <div class="carousel-item {{#unless @index}} active {{/unless}}">
+                                <form action="/delSuperheroImg" method="post" id="delimg{{../_id}}{{@index}}" onsubmit="return confirm('Do you really want to delete this image?');">
                                     <input type="hidden" value="{{@index}}" name="imgid">
                                     <input type="hidden" value="{{../_id}}" name="heroid">
                                     <div class="d-flex justify-content-center">
-                                        <button type="submit" class="btn btn-danger position-absolute" form="delimg{{@index}}">
+                                        <button type="submit" class="btn btn-danger position-absolute" form="delimg{{../_id}}{{@index}}">
                                             X
                                         </button>
                                     </div>
