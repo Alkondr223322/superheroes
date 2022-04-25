@@ -8,9 +8,10 @@
   height: 100%;
   object-fit: cover;
 }
+/*Make all images the same size */
 .index-img-container{
   height: 25vh;
 }
-.index-img-img{
+.index-img-img{ 
   max-height: 20vh
 }
