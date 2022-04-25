@@ -1,6 +1,9 @@
 {{#if superheroes.length}}
 <ul class="list-group">
-  <li class="list-group-item">Superheroes on duty! </li>
+  <li class="list-group-item d-flex justify-content-between align-items-center">
+    <div>Superheroes on duty!</div>  
+    <div><a href="/addSuperhero" class="btn btn-primary">Add new superhero</a></div>
+  </li>
   {{#each superheroes}}
   <li class="list-group-item">
     <div class="container " >
@@ -12,88 +15,7 @@
           {{/if}}
           <div class="col-9 d-flex justify-content-center align-items-center "> <span>{{nickname}}</span> </div>
         </div>
-        <div class="row">
-          <div class="accordion accordion-flush col-12" id="accordion{{@index}}">
-             <div class="accordion-item ">
-                <h2 class="accordion-header " id="flush-heading{{@index}}">
-                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse{{@index}}" aria-expanded="false" aria-controls="flush-collapse{{@index}}">
-                    Manage hero
-                  </button>
-                </h2>
-                <div id="flush-collapse{{@index}}" class="accordion-collapse collapse" aria-labelledby="flush-heading{{@index}}" data-bs-parent="#accordion{{@index}}">
-                  <div class="accordion-body">
-                    <form action="/editSuperhero" enctype="multipart/form-data" method="POST">
-                        <div class="form-group">
-                          <label for="nickname">Nickname</label>
-                          <input type="text" name="nickname" class="form-control" id="nickname" value="{{nickname}}">
-                        </div>
-                        <div class="form-group">
-                          <label for="real_name">Real name</label>
-                          <input type="text" name="real_name" class="form-control" id="real_name" value="{{real_name}}">
-                        </div>
-                        <div class="form-group">
-                          <label for="origin_description">Origin description</label>
-                          <input type="text" name="origin_description" class="form-control" id="origin_description" value="{{origin_description}}">
-                        </div>
-                        <div class="form-group">
-                          <label for="superpowers">Superpowers</label>
-                          <input type="text" name="superpowers" class="form-control" id="superpowers" value="{{superpowers}}">
-                        </div>
-                        <div class="form-group">
-                          <label for="catch_phrase">Catch phrase</label>
-                          <input type="text" name="catch_phrase" class="form-control" id="catch_phrase" value="{{catch_phrase}}">
-                        </div>
-                        {{#if filename.length}}
-                        <div class="form-group">
-                          <label for="gallery">Gallery</label>
-                          <div id="carousel{{@index}}" class="carousel slide" data-bs-ride="carousel">
-                            <div class="carousel-inner">
-                            {{#each filename}}
-                              {{#if @index}}
-                              <div class="carousel-item">
-                                <input type="hidden" value="{{@index}}" name="imgid">
-                                <img src="data:{{lookup ../contentType @index}};base64,{{lookup ../imageBase64 @index}}" class="d-block w-100" alt="...">
-                              </div>
-                              {{else}}
-                              <div class="carousel-item active">
-                                <input type="hidden" value="{{@index}}" name="imgid">
-                                <img src="data:{{lookup ../contentType @index}};base64,{{lookup ../imageBase64 @index}}" class="d-block w-100" alt="...">
-                              </div>
-                              {{/if}}
-                            {{/each}}
-                            </div>
-                            <button class="carousel-control-prev" type="button" data-bs-target="#carousel{{@index}}" data-bs-slide="prev">
-                              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                              <span class="visually-hidden">Previous</span>
-                            </button>
-                            <button class="carousel-control-next" type="button" data-bs-target="#carousel{{@index}}" data-bs-slide="next">
-                              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                              <span class="visually-hidden">Next</span>
-                            </button>
-                          </div>
-                        </div>
-                        {{/if}}
-                        <input type="hidden" value="{{_id}}" name="id">
-                        <div class="form-group">
-                          <label for="imgs">Add images</label>
-                          <input type="file" name="images" multiple class="form-control" id="imgs">
-                        </div>
-                        <div class="alert alert-primary d-flex justify-content-center align-items-center" role="alert">
-                          <button class="btn btn-primary" type="submit">Save changes</button>
-                        </div>
-                    </form>
-                    <div class="alert alert-danger d-flex justify-content-center align-items-center" role="alert">
-                      <form action="/deleteSuperhero" method="POST" onsubmit="return confirm('Do you really want to delete {{nickname}}?');">
-                          <input type="hidden" value="{{_id}}" name="id">
-                          <button class="btn btn-danger" type="submit">Delete superhero</button>
-                      </form>
-                    </div>
-
-                  </div>
-                </div>
-              </div> 
-          </div>
-        </div>
+        {{>accordion}}
     </div>
   </li>
   {{/each}}

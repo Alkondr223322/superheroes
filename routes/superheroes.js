@@ -36,7 +36,7 @@ router.post('/addSuperhero', store.array('images', 5), async (req, res) => {
             contentTypeArr.push(files[index].mimetype);
             imageBase64Arr.push(src);
         })
-    }else{console.log("no files added")}
+    }
     const superhero = new Superhero({
         nickname: req.body.nickname,
         real_name: req.body.real_name,
@@ -67,7 +67,7 @@ router.post('/editSuperhero', store.array('images', 5), async (req, res) => {
             superhero.contentType.push(files[index].mimetype);
             superhero.imageBase64.push(src);
         })
-    }else{console.log("no files added")}
+    }
     superhero.nickname = req.body.nickname,
     superhero.real_name = req.body.real_name,
     superhero.origin_description = req.body.origin_description,
@@ -86,4 +86,13 @@ router.post('/deleteSuperhero', async (req, res) => {
    res.redirect('/')
 })
 
+router.post('/delSuperheroImg', async(req, res) =>{
+  const imgid = req.body.imgid
+  const superhero = await Superhero.findById(req.body.heroid);
+  superhero.filename.splice(imgid, 1);
+  superhero.contentType.splice(imgid, 1);
+  superhero.imageBase64.splice(imgid, 1);
+  await superhero.save()
+  res.redirect('/')
+})
 module.exports = router
