@@ -7,6 +7,22 @@
     "start": "node index",
     "dev": "nodemon index"
   },
+  "bin": "index.js",
+  "pkg": {
+    "scripts": [
+      "middleware/*.js",
+      "models/*.js",
+      "routes/*.js"
+    ],
+    "assets": [
+      "views/*.hbs",
+      "views/layouts/*.hbs",
+      "views/partials/*.hbs",
+      "uploads/*.png",
+      "public/*.css"
+    ],
+    "outputPath": "dist"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Alkondr223322/superheroes.git"
