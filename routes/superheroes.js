@@ -35,7 +35,6 @@ router.post(
     if (files) {
       // check if uploaded files are images
       for (let i = 0; i < files.length; i++) {
-        console.log(files[i].mimetype.split("/")[0]);
         if (files[i].mimetype.split("/")[0] != "image") {
           const error = new Error("Error! Non-image file uploaded");
           return next(error);
@@ -51,6 +50,11 @@ router.post(
         filenameArr.push(files[index].originalname);
         contentTypeArr.push(files[index].mimetype);
         imageBase64Arr.push(src);
+      });
+      files.forEach((file) => {
+        fs.unlink(file.path, (err) => {
+          if (err) throw err;
+        });
       });
     }
     const superhero = new Superhero({
@@ -96,7 +100,6 @@ router.post(
     if (files) {
       // check if uploaded files are images
       for (let i = 0; i < files.length; i++) {
-        console.log(files[i].mimetype.split("/")[0]);
         if (files[i].mimetype.split("/")[0] != "image") {
           const error = new Error("Error! Non-image file uploaded");
           return next(error);
@@ -112,6 +115,11 @@ router.post(
         superhero.filename.push(files[index].originalname);
         superhero.contentType.push(files[index].mimetype);
         superhero.imageBase64.push(src);
+      });
+      files.forEach((file) => {
+        fs.unlink(file.path, (err) => {
+          if (err) throw err;
+        });
       });
     }
     (superhero.nickname = req.body.nickname),
